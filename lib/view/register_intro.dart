@@ -66,7 +66,6 @@ class RegisterIntro extends StatelessWidget {
 
   Future<dynamic> _showEmailBottomSheet(
       BuildContext context, Size size) {
-    var isValidate;
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
