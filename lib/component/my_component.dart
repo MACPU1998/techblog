@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:techblog/component/myColors.dart';
 import 'package:techblog/models/fake_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
@@ -59,5 +62,15 @@ class MainTags extends StatelessWidget {
             ],
           )),
     );
+  }
+}
+
+launcherMyUrl(String url) async {
+  var uri = Uri.parse(url);
+
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  } else {
+    log("could not launch url" as num);
   }
 }

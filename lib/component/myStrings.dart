@@ -1,6 +1,6 @@
 class MyString{
   static const String techBlogGithubUrl =
-      "https://github.com/sasansafari/techblog";
+      "https://github.com/MACPU1998/techblog";
   static const String viewHotestBlog = "مشاهده داغ ترین نوشته ها ";
   static const String viewHotestPodCasts = "مشاهده داغ ترین پادکست ها";
   static const String relatedArticle = "نوشته های مرتبط";

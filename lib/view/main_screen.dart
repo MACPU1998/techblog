@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:techblog/component/myColors.dart';
+import 'package:techblog/component/myStrings.dart';
+import 'package:techblog/component/my_component.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
+import 'package:get/get.dart';
 
+
+final GlobalKey<ScaffoldState> _key=GlobalKey();
+
+// ignore: must_be_immutable
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -11,10 +19,8 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-final GlobalKey<ScaffoldState> _key=GlobalKey();
-
 class _MainScreenState extends State<MainScreen> {
-  var selectedPageIndex = 0;
+  RxInt selectedPageIndex = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +38,11 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 DrawerHeader(
                     child: Center(
-                  child: Image.asset(
-                    Assets.image.logo.path,
-                    scale: 2.5,
-                  ),
-                )),
+                      child: Image.asset(
+                        Assets.image.logo.path,
+                        scale: 2.5,
+                      ),
+                    )),
                 ListTile(
                   title: Text("پروفایل کاربری"),
                   onTap: () {},
@@ -52,15 +58,19 @@ class _MainScreenState extends State<MainScreen> {
                   color: Colors.grey,
                 ),
                 ListTile(
-                  title: Text("اشتراک"),
-                  onTap: () {},
+                  title: Text("اشتراک گذاری تگ بلاگ"),
+                  onTap: () async{
+                    await Share.share(MyString.shareText);
+                  },
                 ),
                 const Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
                   title: Text("تک بلاگ در گیت هاب"),
-                  onTap: () {},
+                  onTap: () {
+                    launcherMyUrl(MyString.techBlogGithubUrl);
+                  },
                 ),
                 const Divider(
                   color: Colors.grey,
@@ -98,25 +108,26 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Positioned.fill(
-                child: IndexedStack(
-              index: selectedPageIndex,
-              children: [
-                HomeScreen(size: size, bodyMargin: bodyMargin),
-                // index 0
-                Center(
-                    child: ProfileScreen(size: size, bodyMargin: bodyMargin)),
-                // index 1
-              ],
-            )),
+                child: Obx(() => IndexedStack(
+                  index: selectedPageIndex.value,
+                  children: [
+                    HomeScreen(size: size, bodyMargin: bodyMargin),
+                    // index 0
+                    Center(
+                        child: ProfileScreen(size: size, bodyMargin: bodyMargin)),
+                    // index 1
+                  ],
+                ),)
+            ),
 
             //bottom Navigation
             BottomNavigation(
                 size: size,
                 bodyMargin: bodyMargin,
                 changeIndexScreen: (int value) {
-                  setState(() {
-                    selectedPageIndex = value;
-                  });
+
+                  selectedPageIndex.value = value;
+
                 }),
           ],
         ),
@@ -124,6 +135,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({
