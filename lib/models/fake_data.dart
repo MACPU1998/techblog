@@ -1,14 +1,13 @@
-import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/data_models.dart';
 
 // ignore: non_constant_identifier_names
-Map HomePagePosterMap = {
+/*Map HomePagePosterMap = {
   "imageAssets": Assets.image.posterTest.path,
   "writer": "مهدیس عزیزی",
   "date": "دو روز پیش",
   "title": "دوازده قدم تا برنامه نویسی حرفه ای",
   "view": "251"
-};
+};*/
 
 List<HashTagModel> hashTagList = [
   HashTagModel(title: "جاوا"),

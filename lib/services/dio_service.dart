@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:dio/dio.dart';
-
 
 // method GET
 class DioService {
@@ -15,7 +13,7 @@ class DioService {
               method: 'Get',
             ))
         .then((response) {
-      log(response.toString() as num);
+       // print(response.data);
       return response;
     });
   }

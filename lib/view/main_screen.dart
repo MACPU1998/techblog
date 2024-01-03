@@ -4,6 +4,7 @@ import 'package:techblog/component/myColors.dart';
 import 'package:techblog/component/myStrings.dart';
 import 'package:techblog/component/my_component.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/services/dio_service.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 15;
 

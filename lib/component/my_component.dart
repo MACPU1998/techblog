@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techblog/component/myColors.dart';
 import 'package:techblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,6 +25,7 @@ class TechDivider extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MainTags extends StatelessWidget {
   MainTags({
     required this.index,
@@ -47,17 +49,17 @@ class MainTags extends StatelessWidget {
           child: Row(
             textDirection: TextDirection.rtl,
             children: [
-              Icon(
+              const Icon(
                 Icons.numbers,
                 color: Colors.white,
                 size: 16,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Text(
                 hashTagList[index].title,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ],
           )),
@@ -72,5 +74,20 @@ launcherMyUrl(String url) async {
     await launchUrl(uri);
   } else {
     log("could not launch url" as num);
+  }
+}
+
+
+class loadingSpinKit extends StatelessWidget {
+  const loadingSpinKit({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitChasingDots(
+      color: SolidColors.primaryColor,
+      size: 32.0,
+    );
   }
 }

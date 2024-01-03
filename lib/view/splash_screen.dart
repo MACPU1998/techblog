@@ -22,7 +22,7 @@ class _splashScreenState extends State<splashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: Center(
           child: Column(
@@ -33,7 +33,7 @@ class _splashScreenState extends State<splashScreen> {
                 height: 64,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(top: 30),
                 child: SpinKitChasingDots(
                   color: SolidColors.primaryColor,
                   size: 35.0,
